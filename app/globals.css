@@ -2,26 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-gray-700;
+  }
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #000000 70%);
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .holographic {
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+    background-size: 400% 400%;
+    animation: hologram 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+    border: 2px solid #00ffff;
+  }
+  
+  .medical-interface {
+    background: rgba(0, 100, 200, 0.1);
+    border: 1px solid rgba(0, 200, 255, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .cyber-border {
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, #00ffff, #ff00ff) border-box;
+    background-clip: padding-box, border-box;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes hologram {
+  0%, 100% { 
+    background-position: 0% 50%; 
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    background-position: 100% 50%; 
+    filter: hue-rotate(180deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor; 
+  }
+  50% { 
+    text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; 
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+}
+
+/* Loading animations */
+.loading-dots::after {
+  content: '';
+  animation: dots 2s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0), .75em 0 0 rgba(0, 0, 0, 0);
+  }
+  40% {
+    color: white;
+    text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0), .75em 0 0 rgba(0, 0, 0, 0);
+  }
+  60% {
+    text-shadow: .25em 0 0 white, .5em 0 0 rgba(0, 0, 0, 0), .75em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%, 100% {
+    text-shadow: .25em 0 0 white, .5em 0 0 white, .75em 0 0 white;
+  }
+}
+
+/* Custom focus styles */
+.focus-visible:focus-visible {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .holographic {
+    font-size: 2rem;
+  }
+  
+  .medical-interface {
+    margin: 0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .holographic {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
   }
 }
