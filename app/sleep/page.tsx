@@ -285,7 +285,7 @@ export default function SleepPage() {
                     transition={{ delay: 0.6 }}
                     className="medical-interface rounded-2xl p-6 mb-8"
                 >
-                    <h3 className="text-xl font-semibold text-white mb-6">Last Night's Sleep Stages</h3>
+                    <h3 className="text-xl font-semibold text-white mb-6">Last Night&apos;s Sleep Stages</h3>
                     <div className="grid grid-cols-4 gap-4">
                         <StageCard
                             label="Deep Sleep"

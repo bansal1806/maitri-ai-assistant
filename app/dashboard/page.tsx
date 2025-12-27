@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Heart, Activity, Thermometer, Wind, Brain, TrendingUp } from 'lucide-react'
-import { useHealthStore, useEmotionStore } from '@/lib/store'
+import { useHealthStore } from '@/lib/store'
 import WellnessScore from '@/components/dashboard/WellnessScore'
 import VitalChart from '@/components/dashboard/VitalChart'
 import Starfield from '@/components/effects/Starfield'
