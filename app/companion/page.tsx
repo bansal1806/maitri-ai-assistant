@@ -153,7 +153,7 @@ export default function CompanionPage() {
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div className="medical-interface rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3 text-cyan-400">Emotion Monitor</h3>
-                <EmotionDetector onEmotionDetected={(emotion) => {
+                <EmotionDetector onEmotionDetected={() => {
                   // Emotion updates handled by store
                 }} />
               </div>
@@ -185,8 +185,8 @@ export default function CompanionPage() {
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleVoice}
                     className={`p-3 rounded-lg transition-all ${voiceEnabled
-                        ? 'bg-green-500/20 border-2 border-green-500 text-green-400'
-                        : 'bg-gray-700/50 border border-gray-600 text-gray-400'
+                      ? 'bg-green-500/20 border-2 border-green-500 text-green-400'
+                      : 'bg-gray-700/50 border border-gray-600 text-gray-400'
                       }`}
                   >
                     {voiceEnabled ? <Mic size={20} /> : <MicOff size={20} />}
@@ -212,7 +212,7 @@ export default function CompanionPage() {
                     >
                       <Sparkles className="w-16 h-16 mx-auto mb-4 text-purple-400 opacity-50" />
                       <p className="mb-2">Start a conversation with MAITRI</p>
-                      <p className="text-sm">I'm here to listen and support you</p>
+                      <p className="text-sm">I&apos;m here to listen and support you</p>
                     </motion.div>
                   ) : (
                     messages.map((msg, index) => (
@@ -225,8 +225,8 @@ export default function CompanionPage() {
                       >
                         <div
                           className={`max-w-[80%] p-4 rounded-2xl ${msg.role === 'user'
-                              ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white'
-                              : 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white border border-purple-500/30'
+                            ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white'
+                            : 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white border border-purple-500/30'
                             }`}
                         >
                           <p className="text-sm leading-relaxed">{msg.content}</p>

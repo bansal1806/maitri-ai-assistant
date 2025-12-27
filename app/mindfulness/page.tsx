@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, RotateCcw, Volume2, VolumeX } from 'lucide-react'
 import Starfield from '@/components/effects/Starfield'
