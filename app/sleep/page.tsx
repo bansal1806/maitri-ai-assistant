@@ -345,7 +345,7 @@ export default function SleepPage() {
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-green-400 mt-1">✓</span>
-                                <span>Your resting heart rate is {latestSleep.heartRate < 60 ? 'excellent' : 'good'} signal of good cardiovascular fitness</span>
+                                <span>Your resting heart rate is {latestSleep.heartRate < 60 ? 'excellent' : 'good'} - a signal of good cardiovascular fitness</span>
                             </li>
                         </ul>
                     </div>

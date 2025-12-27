@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Play, Pause, RotateCcw, Volume2, VolumeX } from 'lucide-react'
 import Starfield from '@/components/effects/Starfield'
 import FloatingParticles from '@/components/effects/FloatingParticles'
@@ -76,7 +76,6 @@ export default function MindfulnessPage() {
     const [totalTime, setTotalTime] = useState(0)
     const [isMuted, setIsMuted] = useState(false)
     const timerRef = useRef<NodeJS.Timeout | null>(null)
-    const audioRef = useRef<HTMLAudioElement | null>(null)
 
     const currentExercise = selectedExercise ? exercises[selectedExercise] : null
     const currentStep = currentExercise?.steps[currentStepIndex]
@@ -143,8 +142,10 @@ export default function MindfulnessPage() {
 
         // In production, use actual audio files
         // For now, using Web Audio API to generate tones
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext
-        const audioContext = new AudioContext()
+        const AC = window.AudioContext || (window as typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+        if (!AC) return
+
+        const audioContext = new AC()
         const oscillator = audioContext.createOscillator()
         const gainNode = audioContext.createGain()
 

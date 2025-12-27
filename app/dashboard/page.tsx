@@ -10,9 +10,8 @@ import Starfield from '@/components/effects/Starfield'
 import FloatingParticles from '@/components/effects/FloatingParticles'
 
 export default function DashboardPage() {
-    const { currentVitals, wellnessScore, updateVitals } = useHealthStore()
-    const { currentEmotion, updateEmotion } = useEmotionStore()
-    const [missionDay, setMissionDay] = useState(45)
+    const { updateVitals, currentVitals, wellnessScore } = useHealthStore()
+    const [missionDay] = useState(45)
 
     // Simulate vital signs updates (replace with real data later)
     useEffect(() => {
