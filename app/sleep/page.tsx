@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Moon, Sun, TrendingUp, TrendingDown, Zap, Brain, Heart } from 'lucide-react'
 import { Line, Radar } from 'react-chartjs-2'
@@ -241,8 +241,8 @@ export default function SleepPage() {
                                     <button
                                         onClick={() => setSelectedPeriod('week')}
                                         className={`px-4 py-2 rounded-lg text-sm transition-all ${selectedPeriod === 'week'
-                                                ? 'bg-cyan-500/20 border border-cyan-500 text-cyan-400'
-                                                : 'bg-gray-700/50 border border-gray-600 text-gray-400'
+                                            ? 'bg-cyan-500/20 border border-cyan-500 text-cyan-400'
+                                            : 'bg-gray-700/50 border border-gray-600 text-gray-400'
                                             }`}
                                     >
                                         Week
@@ -250,8 +250,8 @@ export default function SleepPage() {
                                     <button
                                         onClick={() => setSelectedPeriod('month')}
                                         className={`px-4 py-2 rounded-lg text-sm transition-all ${selectedPeriod === 'month'
-                                                ? 'bg-cyan-500/20 border border-cyan-500 text-cyan-400'
-                                                : 'bg-gray-700/50 border border-gray-600 text-gray-400'
+                                            ? 'bg-cyan-500/20 border border-cyan-500 text-cyan-400'
+                                            : 'bg-gray-700/50 border border-gray-600 text-gray-400'
                                             }`}
                                     >
                                         Month
@@ -345,7 +345,7 @@ export default function SleepPage() {
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-green-400 mt-1">✓</span>
-                                <span>Your resting heart rate is {latestSleep.heartRate < 60 ? 'excellent' : 'good'}signal of good cardiovascular fitness</span>
+                                <span>Your resting heart rate is {latestSleep.heartRate < 60 ? 'excellent' : 'good'} signal of good cardiovascular fitness</span>
                             </li>
                         </ul>
                     </div>

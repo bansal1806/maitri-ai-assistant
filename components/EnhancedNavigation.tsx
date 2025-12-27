@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Home, Menu, X, MessageCircle, Activity, Bot, Brain, Moon, Sparkles } from 'lucide-react'
+import { Home, Menu, X, Activity, Bot, Brain, Moon, Sparkles } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function EnhancedNavigation() {
@@ -46,19 +46,6 @@ export default function EnhancedNavigation() {
         { href: '/sleep', icon: Moon, label: 'Sleep', color: 'indigo' },
     ]
 
-    const getColorClass = (color: string, active: boolean) => {
-        if (active) {
-            switch (color) {
-                case 'cyan': return 'bg-cyan-500 text-black';
-                case 'purple': return 'bg-purple-500 text-white';
-                case 'green': return 'bg-green-500 text-black';
-                case 'teal': return 'bg-teal-500 text-black';
-                case 'indigo': return 'bg-indigo-500 text-white';
-                default: return 'bg-gray-500 text-white';
-            }
-        }
-        return `text-${color}-400 hover:bg-${color}-500/20`
-    }
 
     return (
         <>

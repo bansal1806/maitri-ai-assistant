@@ -93,7 +93,6 @@ export default function Starfield({
 
                 // Draw motion trail
                 if (speed > 0.3) {
-                    const trailLength = speed * 20
                     const prevZ = star.z + star.speed * speed * 3
                     const prevScale = 1000 / (1000 + prevZ)
                     const px2d = star.x * prevScale + centerX

@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useEffect, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Sphere, MeshDistortMaterial, Html } from '@react-three/drei'
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
 import { useEmotionStore } from '@/lib/store'
@@ -221,8 +221,8 @@ export default function Advanced3DAvatar({
                     className="flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-cyan-500/30"
                 >
                     <div className={`w-3 h-3 rounded-full ${isListening ? 'bg-green-400 animate-pulse' :
-                            isSpeaking ? 'bg-purple-400 animate-pulse' :
-                                'bg-cyan-400'
+                        isSpeaking ? 'bg-purple-400 animate-pulse' :
+                            'bg-cyan-400'
                         }`} />
                     <span className="text-sm font-medium text-white">
                         {isListening ? 'Listening...' :
