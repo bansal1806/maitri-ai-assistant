@@ -137,7 +137,7 @@ export default function MindfulnessPage() {
         }
     }
 
-    const playSound = (type: string) => {
+    const playSound = useCallback((type: string) => {
         if (isMuted) return
 
         // In production, use actual audio files
@@ -169,7 +169,7 @@ export default function MindfulnessPage() {
 
         oscillator.start(audioContext.currentTime)
         oscillator.stop(audioContext.currentTime + 0.5)
-    }
+    }, [isMuted])
 
     const progress = currentExercise ? ((totalTime - timeRemaining - (currentExercise.steps.slice(0, currentStepIndex).reduce((sum: number, step: ExerciseStep) => sum + step.duration, 0))) / totalTime) * 100 : 0
 
