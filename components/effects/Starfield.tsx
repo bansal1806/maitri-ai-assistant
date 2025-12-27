@@ -81,7 +81,7 @@ export default function Starfield({
                 const x2d = star.x * scale + centerX
                 const y2d = star.y * scale + centerY
 
-                // Calculate size and alpha based on distance
+                // Calculate trail opacity based on speedscale * 2
                 const size = star.size * scale * 2
                 const alpha = Math.min(1, (1000 - star.z) / 500)
 

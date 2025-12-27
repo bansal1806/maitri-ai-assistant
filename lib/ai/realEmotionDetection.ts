@@ -5,8 +5,7 @@
 
 import * as tf from '@tensorflow/tfjs'
 import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detection'
-import type { EmotionType } from './emotionAI'
-import { useEmotionStore } from './store'
+import type { EmotionType } from '../emotionAI'
 
 export interface FaceDetectionResult {
     emotion: EmotionType
@@ -150,7 +149,6 @@ class RealEmotionDetector {
 
         // Get key facial points (MediaPipe face mesh indices)
         const leftEyebrow = keypoints[107] // Left inner eyebrow
-        const rightEyebrow = keypoints[336] // Right inner eyebrow
         const noseTip = keypoints[1] // Nose tip
         const upperLip = keypoints[13] // Upper lip
         const lowerLip = keypoints[14] // Lower lip
@@ -196,12 +194,12 @@ class RealEmotionDetector {
 
         // Surprised: Eyebrows raised, mouth open
         if (actionUnits.innerBrow > 0.6 && actionUnits.jawDrop > 0.5) {
-            return { type: 'excited', confidence: 0.8 }
+            return { type: 'surprised', confidence: 0.8 }
         }
 
         // Stressed/Angry: Brows furrowed, tight lips
         if (actionUnits.innerBrow > 0.4 && actionUnits.jawDrop < 0.2) {
-            return { type: 'stressed', confidence: 0.75 }
+            return { type: 'angry', confidence: 0.75 }
         }
 
         // Neutral: Default

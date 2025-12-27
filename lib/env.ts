@@ -9,10 +9,10 @@
  * @param defaultValue - Default value if not set
  * @returns Environment variable value or default
  */
-function getEnvVar(key: string, defaultValue: string = ''): string {
+export function getEnvVar(key: string, defaultValue: string = ''): string {
     if (typeof window !== 'undefined') {
         // Client-side: only NEXT_PUBLIC_ variables are available
-        return (window as any).ENV?.[key] || process.env[key] || defaultValue
+        return (window as Window & { ENV?: Record<string, string> }).ENV?.[key] || process.env[key] || defaultValue
     }
     // Server-side
     return process.env[key] || defaultValue

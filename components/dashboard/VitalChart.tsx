@@ -99,7 +99,7 @@ export default function VitalChart({ type, height = 200 }: VitalChartProps) {
                     }
                 }),
                 borderColor: config.color,
-                backgroundColor: (context: any) => {
+                backgroundColor: (context: { chart: { ctx: CanvasRenderingContext2D; height: number } }) => {
                     const ctx = context.chart.ctx
                     const gradient = ctx.createLinearGradient(0, 0, 0, height)
                     gradient.addColorStop(0, config.gradientStart)
