@@ -223,9 +223,9 @@ export default function MindfulnessPage() {
 
                             {/* Exercise Info */}
                             <div className="relative z-10 text-center mb-8">
-                                <div className="text-6xl mb-4">{currentExercise.icon}</div>
-                                <h2 className="text-3xl font-bold mb-2">{currentExercise.name}</h2>
-                                <p className="text-gray-400">{currentExercise.description}</p>
+                                <div className="text-6xl mb-4">{currentExercise?.icon}</div>
+                                <h2 className="text-3xl font-bold mb-2">{currentExercise?.name}</h2>
+                                <p className="text-gray-400">{currentExercise?.description}</p>
                             </div>
 
                             {/* Breathing Circle */}
