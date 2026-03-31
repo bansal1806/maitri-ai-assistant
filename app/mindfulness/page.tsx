@@ -82,8 +82,8 @@ export default function MindfulnessPage() {
 
     const playSound = useCallback((type: string) => {
         if (isMuted) return
-
-        const AC = (window as any).AudioContext || (window as any).webkitAudioContext
+        const AC = (window as typeof window & { webkitAudioContext?: typeof AudioContext }).AudioContext || 
+            (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
         if (!AC) return
 
         const audioContext = new AC()
