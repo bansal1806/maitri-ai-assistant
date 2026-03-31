@@ -52,8 +52,8 @@
   .medical-interface {
     background: rgba(26, 26, 46, 0.6);
     border: 1px solid rgba(0, 255, 255, 0.2);
-    backdrop-filter: blur(15px) saturate(180%);
     -webkit-backdrop-filter: blur(15px) saturate(180%);
+    backdrop-filter: blur(15px) saturate(180%);
     transition: all 0.3s ease;
   }
 
@@ -65,8 +65,8 @@
   
   .glass-effect {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px) saturate(200%);
     -webkit-backdrop-filter: blur(20px) saturate(200%);
+    backdrop-filter: blur(20px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
@@ -371,4 +371,25 @@ a:focus-visible {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
   }
+}
+
+/* Utility Classes for Premium Effects */
+.bg-grid-cyan {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-starfield {
+  background: radial-gradient(ellipse at center, #0a0a0f 0%, #000000 100%);
+}
+
+@keyframes grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(50px); }
+}
+
+.animate-grid-move {
+  animation: grid-move 20s linear infinite;
 }

@@ -118,7 +118,7 @@ export default function CompanionPage() {
             transition={{ delay: 0.2 }}
             className="lg:sticky lg:top-24 h-fit"
           >
-            <div className="medical-interface rounded-2xl p-6 overflow-hidden" style={{ height: '600px' }}>
+            <div className="medical-interface rounded-2xl p-6 overflow-hidden h-[600px]">
               <Advanced3DAvatar
                 emotion={currentEmotion?.emotion || 'calm'}
                 isListening={isListening}
@@ -174,7 +174,7 @@ export default function CompanionPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <div className="medical-interface rounded-2xl p-6 flex flex-col" style={{ height: '600px' }}>
+            <div className="medical-interface rounded-2xl p-6 flex flex-col h-[600px]">
 
               {/* Controls */}
               <div className="flex items-center justify-between mb-4 pb-4 border-b border-cyan-500/20">

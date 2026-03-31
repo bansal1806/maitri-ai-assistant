@@ -176,7 +176,7 @@ export default function Advanced3DAvatar({
     const activeEmotion = currentEmotion?.emotion || emotion
 
     return (
-        <div className="relative w-full h-full" style={{ minHeight: '500px' }}>
+        <div className="relative w-full h-full min-h-[500px]">
             <Canvas
                 camera={{ position: [0, 0, 8], fov: 50 }}
                 style={{ background: 'transparent' }}

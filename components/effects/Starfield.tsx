@@ -127,8 +127,7 @@ export default function Starfield({
     return (
         <canvas
             ref={canvasRef}
-            className={`fixed inset-0 -z-10 ${className}`}
-            style={{ background: 'radial-gradient(ellipse at center, #0a0a0f 0%, #000000 100%)' }}
+            className={`fixed inset-0 -z-10 bg-starfield ${className}`}
         />
     )
 }

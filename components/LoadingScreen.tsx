@@ -68,14 +68,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         >
             {/* Animated Background Grid */}
             <div className="absolute inset-0 overflow-hidden opacity-20">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: `
-            linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
-          `,
-                    backgroundSize: '50px 50px',
-                    animation: 'grid-move 20s linear infinite'
-                }} />
+                <div className="absolute inset-0 bg-grid-cyan animate-grid-move" />
             </div>
 
             {/* Content */}
@@ -126,11 +119,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
                         {/* Shimmer Effect */}
                         <motion.div
-                            className="absolute inset-y-0 left-0 right-0"
-                            style={{
-                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                                width: '30%'
-                            }}
+                            className="absolute inset-y-0 left-0 right-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-[30%]"
                             animate={{
                                 x: ['-100%', '400%']
                             }}

@@ -80,6 +80,42 @@ export default function MindfulnessPage() {
     const currentExercise = selectedExercise ? exercises[selectedExercise] : null
     const currentStep = currentExercise?.steps[currentStepIndex]
 
+    const playSound = useCallback((type: string) => {
+        if (isMuted) return
+
+        const AC = (window as any).AudioContext || (window as any).webkitAudioContext
+        if (!AC) return
+
+        const audioContext = new AC()
+        const oscillator = audioContext.createOscillator()
+        const gainNode = audioContext.createGain()
+
+        oscillator.connect(gainNode)
+        gainNode.connect(audioContext.destination)
+
+        const frequencies: Record<string, number> = {
+            inhale: 440,
+            exhale: 330,
+            hold: 380,
+            rest: 350,
+            start: 523,
+            complete: 659
+        }
+
+        oscillator.type = 'sine'
+        oscillator.frequency.setValueAtTime(frequencies[type] || 440, audioContext.currentTime)
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime)
+        gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1)
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1)
+
+        oscillator.start()
+        oscillator.stop(audioContext.currentTime + 1)
+
+        setTimeout(() => {
+            audioContext.close()
+        }, 1500)
+    }, [isMuted])
+
     useEffect(() => {
         if (isPlaying && currentExercise && currentStep) {
             if (timeRemaining === 0) {
@@ -111,7 +147,7 @@ export default function MindfulnessPage() {
                 clearInterval(timerRef.current)
             }
         }
-    }, [isPlaying, currentStepIndex, currentExercise, currentStep, timeRemaining])
+    }, [isPlaying, currentStepIndex, currentExercise, currentStep, timeRemaining, playSound])
 
     const startExercise = (exerciseKey: keyof typeof exercises) => {
         setSelectedExercise(exerciseKey)
@@ -136,40 +172,6 @@ export default function MindfulnessPage() {
             setTimeRemaining(currentExercise.steps[0].duration)
         }
     }
-
-    const playSound = useCallback((type: string) => {
-        if (isMuted) return
-
-        // In production, use actual audio files
-        // For now, using Web Audio API to generate tones
-        const AC = window.AudioContext || (window as typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-        if (!AC) return
-
-        const audioContext = new AC()
-        const oscillator = audioContext.createOscillator()
-        const gainNode = audioContext.createGain()
-
-        oscillator.connect(gainNode)
-        gainNode.connect(audioContext.destination)
-
-        const frequencies: Record<string, number> = {
-            inhale: 440,
-            exhale: 330,
-            hold: 380,
-            rest: 350,
-            start: 523,
-            complete: 659
-        }
-
-        oscillator.frequency.value = frequencies[type] || 440
-        oscillator.type = 'sine'
-
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime)
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5)
-
-        oscillator.start(audioContext.currentTime)
-        oscillator.stop(audioContext.currentTime + 0.5)
-    }, [isMuted])
 
     const progress = currentExercise ? ((totalTime - timeRemaining - (currentExercise.steps.slice(0, currentStepIndex).reduce((sum: number, step: ExerciseStep) => sum + step.duration, 0))) / totalTime) * 100 : 0
 
@@ -229,9 +231,9 @@ export default function MindfulnessPage() {
                             </div>
 
                             {/* Breathing Circle */}
-                            <div className="relative flex items-center justify-center mb-8" style={{ height: '300px' }}>
+                            <div className="relative flex items-center justify-center mb-8 h-[300px]">
                                 <motion.div
-                                    className="absolute rounded-full bg-gradient-to-br from-cyan-400/30 to-purple-400/30 backdrop-blur-xl border-2 border-cyan-400/50"
+                                    className="absolute rounded-full bg-gradient-to-br from-cyan-400/30 to-purple-400/30 backdrop-blur-xl border-2 border-cyan-400/50 w-[200px] h-[200px]"
                                     animate={{
                                         scale: currentStep?.type === 'inhale' ? [1, 1.5] :
                                             currentStep?.type === 'exhale' ? [1.5, 1] :
@@ -243,7 +245,6 @@ export default function MindfulnessPage() {
                                         repeat: Infinity,
                                         ease: "easeInOut"
                                     }}
-                                    style={{ width: '200px', height: '200px' }}
                                 />
 
                                 <div className="relative z-10 text-center">
@@ -263,7 +264,7 @@ export default function MindfulnessPage() {
                                     />
                                 </div>
                                 <div className="flex justify-between mt-2 text-xs text-gray-500">
-                                    <span>Step {currentStepIndex + 1} of {currentExercise.steps.length}</span>
+                                    <span>Step {currentStepIndex + 1} of {currentExercise?.steps.length || 0}</span>
                                     <span>{Math.floor((totalTime - timeRemaining) / 60)}:{((totalTime - timeRemaining) % 60).toString().padStart(2, '0')} / {Math.floor(totalTime / 60)}:{(totalTime % 60).toString().padStart(2, '0')}</span>
                                 </div>
                             </div>

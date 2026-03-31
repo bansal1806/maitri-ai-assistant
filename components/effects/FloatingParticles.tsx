@@ -161,8 +161,7 @@ export default function FloatingParticles({
     return (
         <canvas
             ref={canvasRef}
-            className={`fixed inset-0 -z-10 pointer-events-none ${className}`}
-            style={{ mixBlendMode: 'screen' }}
+            className={`fixed inset-0 -z-10 pointer-events-none mix-blend-screen ${className}`}
         />
     )
 }
