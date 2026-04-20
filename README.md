@@ -124,7 +124,7 @@ Guided breathing and meditation modules designed for low-gravity environments. F
 - Modern browser with WebGL 2.0 support
 - Webcam for emotion detection
 
-### Installation
+###  Installation
 
 ```bash
 git clone https://github.com/bansal1806/maitri-ai-assistant.git
